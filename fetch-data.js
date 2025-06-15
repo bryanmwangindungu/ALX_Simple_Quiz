@@ -1,4 +1,4 @@
-// Define asynchronous function to fetch and display user data
+// Initialize the Async Function
 async function fetchUserData() {
     // Define the API URL
     const apiUrl = 'https://jsonplaceholder.typicode.com/users';
@@ -17,12 +17,19 @@ async function fetchUserData() {
         // Create and Append User List
         const userList = document.createElement('ul');
 
+        // Loop through the users array
         users.forEach(user => {
+            // Create a <li> element
             const listItem = document.createElement('li');
+
+            // Set the text content of the <li> to the user’s name
             listItem.textContent = user.name;
+
+            // Append the <li> to userList
             userList.appendChild(listItem);
         });
 
+        // Append userList to dataContainer
         dataContainer.appendChild(userList);
 
     } catch (error) {
