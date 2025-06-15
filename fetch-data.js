@@ -1,34 +1,36 @@
 // Define asynchronous function to fetch and display user data
 async function fetchUserData() {
+    // Define the API URL
     const apiUrl = 'https://jsonplaceholder.typicode.com/users';
+
+    // Select the Data Container Element
     const dataContainer = document.getElementById('api-data');
 
     try {
+        // Fetch Data Using try-catch
         const response = await fetch(apiUrl);
         const users = await response.json();
 
-        // Clear the loading message
+        // Clear the Loading Message
         dataContainer.innerHTML = '';
 
-        // Create a list to hold user names
+        // Create and Append User List
         const userList = document.createElement('ul');
 
-        // Loop through the users array and create list items
         users.forEach(user => {
             const listItem = document.createElement('li');
             listItem.textContent = user.name;
             userList.appendChild(listItem);
         });
 
-        // Append the list to the container
         dataContainer.appendChild(userList);
 
     } catch (error) {
-        // Handle errors
+        // Error Handling
         dataContainer.innerHTML = '';
         dataContainer.textContent = 'Failed to load user data.';
     }
 }
 
-// Run fetchUserData when the DOM is fully loaded
+// Invoke fetchUserData on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', fetchUserData);
